@@ -77,9 +77,6 @@ public class Main {
                 if (currentUser.getRole() == UserRole.USER) {
                     switch (choice) {
                         case 1 -> { // Tambah Tugas
-                            // =================================================================
-                            // AWAL DARI BLOK LOGIKA BARU UNTUK MENAMBAH TUGAS
-                            // =================================================================
                             System.out.println("== Menu Tambah Tugas Baru ==");
                             System.out.print("Nama Tugas: ");
                             String name = scanner.nextLine();
