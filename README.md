@@ -12,12 +12,12 @@ Dengan TaskBuddy, pengguna dapat menambahkan, melihat, mengurutkan, dan mencari 
 
 ## 🎯 Fitur Utama
 
-### 1. Struktur Tugas (Tree) – 
+### 1. Struktur Tugas (Tree) 
 - Menggunakan struktur **Tree** untuk mengelola tugas dan subtugas.
 - Mendukung penambahan tugas dengan parent ID untuk membentuk hierarki tugas.
 - Fitur `displayTree()` menampilkan seluruh struktur tugas secara terformat.
 
-### 2. Log Perubahan (Double Linked List) – 
+### 2. Log Perubahan (Double Linked List) 
 - Mencatat setiap aksi pengguna menggunakan struktur **Double Linked List**.
 - Fitur `Undo` dan `Redo` memungkinkan pembatalan dan pengulangan aksi pengguna.
 - Riwayat aktivitas ditampilkan lengkap melalui `ActivityLog`.
