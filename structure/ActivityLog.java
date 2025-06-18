@@ -1,7 +1,5 @@
 package structure;
 
-import java.time.LocalDateTime;
-
 public class ActivityLog {
     private LogNode head;
     private LogNode tail;
@@ -9,13 +7,21 @@ public class ActivityLog {
 
     public void addLog(String username, String activity) {
         LogNode newNode = new LogNode(username, activity);
+
+        // Jika sedang di tengah (ada undo sebelumnya), hapus redo yang tersisa
         if (current != tail && current != null) {
+            LogNode temp = current.getNext();
+            while (temp != null) {
+                LogNode next = temp.getNext();
+                temp.setPrev(null);
+                temp.setNext(null);
+                temp = next;
+            }
             current.setNext(null);
             tail = current;
-        } else if (current == null && head != null) {
-            head = tail = null;
         }
 
+        // Tambahkan node baru
         if (head == null) {
             head = tail = newNode;
         } else {
@@ -25,6 +31,7 @@ public class ActivityLog {
         }
 
         current = tail;
+        System.out.println("[Log] " + activity);
     }
 
     public void undo() {
@@ -37,13 +44,14 @@ public class ActivityLog {
     }
 
     public void redo() {
-        if (current == tail) {
-            System.out.println("Tidak ada aktivitas untuk di-redo.");
+        if (current == null && head != null) {
+            current = head;
+            System.out.println("Redo: " + current.getActivity() + " - dipulihkan.");
+        } else if (current != null && current.getNext() != null) {
+            current = current.getNext();
+            System.out.println("Redo: " + current.getActivity() + " - dipulihkan.");
         } else {
-            current = (current == null) ? head : current.getNext();
-            if (current != null) {
-                System.out.println("Redo: " + current.getActivity() + " - dipulihkan.");
-            }
+            System.out.println("Tidak ada aktivitas untuk di-redo.");
         }
     }
 
